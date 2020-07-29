@@ -1,26 +1,31 @@
-var express = require('express');
-var home = require('./controller/home');
+var express =         require('express');
+var bodyParser =      require('body-parser');
+var login =           require('./controller/login');
+var admin =           require('./controller/admin');
+var employee=         require('./controller/employee');
+var addEmployee =     require('./controller/Admin/AddEmployee');
+var allEmployeeList = require('./controller/Admin/AllEmployeeList');
+var update          = require('./controller/Admin/update');
+var dlt             = require('./controller/Admin/delete');
+var myProfile       = require('./controller/Employee/MyProfile');
+var updateProfile   = require('./controller/Employee/UpdateProfile');
+var app =         express();
 
-var app 	= express();
-
-
-//Configuration
 app.set('view engine', 'ejs');
 
-//Middleware
-app.use('/home', home);
+//middleware
+app.use(bodyParser());
+app.use('/login',login);
+app.use('/admin',admin);
+app.use('/employee',employee);
+app.use('/Admin/AddEmployee',addEmployee);
+app.use('/Admin/AllEmployeeList',allEmployeeList);
+app.use('/Admin/update/1',update);
+app.use('/Admin/delete/1',dlt);
+app.use('/Employee/MyProfile',myProfile);
+app.use('/Employee/UpdateProfile',updateProfile);
 
-//ROUTING
-app.get('/', (req, res)=>{
-	
-});
 
-app.get('/login', (req, res)=>{
-
-});
-
-
-//SERVER STARTUP
-app.listen(3000, ()=>{
-	console.log('express server started at 3000');
-});
+app.listen(58822,function(){
+  console.log('express http server started at ....58822');
+})
